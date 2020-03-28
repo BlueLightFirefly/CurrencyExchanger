@@ -9,11 +9,16 @@
 import UIKit
 import Foundation
 class CurrencyView: UIView {
-    class func instanceFromNib() -> CurrencyView {
-        return UINib(nibName: "CurrencyView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! CurrencyView
+    
+    var currencyChangeTapBlock: (()-> ())?
+    class func instanceFromNib(tapBlock:(()-> ())? = nil) -> CurrencyView {
+        let view = UINib(nibName: "CurrencyView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! CurrencyView
+        view.currencyChangeTapBlock = tapBlock
+        return view
     }
     
     @IBAction func currencyButtonTapped() {
         print("Tapped")
+        currencyChangeTapBlock?()
     }
 }
