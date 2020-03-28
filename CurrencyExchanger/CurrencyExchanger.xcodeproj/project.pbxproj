@@ -11,7 +11,6 @@
 		77C431B7EE07886AAA5A39B0 /* Pods_CurrencyExchanger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA679AACAAD0C01CB0996CD5 /* Pods_CurrencyExchanger.framework */; };
 		B6BB129E202AB063961BA932 /* Pods_CurrencyExchangerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF940A13572FE5478BF3E669 /* Pods_CurrencyExchangerTests.framework */; };
 		E01A315D242CFF4200EFEA64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A315C242CFF4200EFEA64 /* AppDelegate.swift */; };
-		E01A315F242CFF4200EFEA64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A315E242CFF4200EFEA64 /* SceneDelegate.swift */; };
 		E01A3161242CFF4200EFEA64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A3160242CFF4200EFEA64 /* ViewController.swift */; };
 		E01A3164242CFF4200EFEA64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E01A3162242CFF4200EFEA64 /* Main.storyboard */; };
 		E01A3166242CFF4700EFEA64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E01A3165242CFF4700EFEA64 /* Assets.xcassets */; };
@@ -44,7 +43,6 @@
 		74EAEB5F688E8830C2928069 /* Pods-CurrencyExchanger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyExchanger.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyExchanger/Pods-CurrencyExchanger.debug.xcconfig"; sourceTree = "<group>"; };
 		E01A3159242CFF4200EFEA64 /* CurrencyExchanger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyExchanger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01A315C242CFF4200EFEA64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E01A315E242CFF4200EFEA64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E01A3160242CFF4200EFEA64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E01A3163242CFF4200EFEA64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E01A3165242CFF4700EFEA64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				E01A315C242CFF4200EFEA64 /* AppDelegate.swift */,
-				E01A315E242CFF4200EFEA64 /* SceneDelegate.swift */,
 				E01A3160242CFF4200EFEA64 /* ViewController.swift */,
 				E01A3162242CFF4200EFEA64 /* Main.storyboard */,
 				E01A3165242CFF4700EFEA64 /* Assets.xcassets */,
@@ -409,7 +406,6 @@
 			files = (
 				E01A3161242CFF4200EFEA64 /* ViewController.swift in Sources */,
 				E01A315D242CFF4200EFEA64 /* AppDelegate.swift in Sources */,
-				E01A315F242CFF4200EFEA64 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
