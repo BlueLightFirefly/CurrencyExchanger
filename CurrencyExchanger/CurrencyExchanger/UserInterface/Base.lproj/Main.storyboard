@@ -16,22 +16,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnW-vc-PbQ">
-                                <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0p4-hr-bj9">
+                                <rect key="frame" x="16" y="341.5" width="382" height="173"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfM-hN-9O7">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter value here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heu-aR-QDy">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="bXb-N1-uak"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="decimalPad"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="heu-aR-QDy" firstAttribute="leading" secondItem="pfM-hN-9O7" secondAttribute="leading" id="JeD-Bh-NOw"/>
+                                            <constraint firstAttribute="bottom" secondItem="heu-aR-QDy" secondAttribute="bottom" constant="16" id="TaS-87-QiF"/>
+                                            <constraint firstAttribute="trailing" secondItem="heu-aR-QDy" secondAttribute="trailing" id="g1F-Ee-B9D"/>
+                                            <constraint firstItem="heu-aR-QDy" firstAttribute="top" secondItem="pfM-hN-9O7" secondAttribute="top" id="iIP-0L-3Je"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrn-Y4-wLc">
+                                        <rect key="frame" x="0.0" y="60" width="382" height="44"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter value here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evW-cI-xKk">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="hL7-VD-NY0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="evW-cI-xKk" firstAttribute="top" secondItem="rrn-Y4-wLc" secondAttribute="top" id="6gC-sI-84U"/>
+                                            <constraint firstAttribute="bottom" secondItem="evW-cI-xKk" secondAttribute="bottom" id="TE8-Kn-Foc"/>
+                                            <constraint firstAttribute="trailing" secondItem="evW-cI-xKk" secondAttribute="trailing" id="r4l-HL-Nc8"/>
+                                            <constraint firstItem="evW-cI-xKk" firstAttribute="leading" secondItem="rrn-Y4-wLc" secondAttribute="leading" id="wgn-hG-eNe"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZ1-5x-6Fc">
+                                        <rect key="frame" x="124" y="128" width="134" height="45"/>
+                                        <color key="backgroundColor" red="0.17333522032136858" green="0.52328373968298658" blue="0.04469695034762565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="10" maxX="10" maxY="10"/>
+                                        <inset key="imageEdgeInsets" minX="-17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Exchange" image="ic_exchange">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="rrn-Y4-wLc" firstAttribute="leading" secondItem="0p4-hr-bj9" secondAttribute="leading" id="0bc-KV-bDC"/>
+                                    <constraint firstItem="wZ1-5x-6Fc" firstAttribute="centerX" secondItem="0p4-hr-bj9" secondAttribute="centerX" id="1i3-RM-IZw"/>
+                                    <constraint firstItem="rrn-Y4-wLc" firstAttribute="top" secondItem="pfM-hN-9O7" secondAttribute="bottom" id="EDh-zP-m6F"/>
+                                    <constraint firstItem="pfM-hN-9O7" firstAttribute="top" secondItem="0p4-hr-bj9" secondAttribute="top" id="FD6-15-a2c"/>
+                                    <constraint firstItem="wZ1-5x-6Fc" firstAttribute="top" secondItem="rrn-Y4-wLc" secondAttribute="bottom" constant="24" id="RTq-an-AMt"/>
+                                    <constraint firstAttribute="trailing" secondItem="rrn-Y4-wLc" secondAttribute="trailing" id="USf-Zy-5LQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="wZ1-5x-6Fc" secondAttribute="bottom" id="YwP-sD-Lcj"/>
+                                    <constraint firstAttribute="trailing" secondItem="pfM-hN-9O7" secondAttribute="trailing" id="pvv-QI-kzo"/>
+                                    <constraint firstItem="pfM-hN-9O7" firstAttribute="leading" secondItem="0p4-hr-bj9" secondAttribute="leading" id="zuI-zB-HKe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="pnW-vc-PbQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xha-gz-Att"/>
-                            <constraint firstItem="pnW-vc-PbQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i8U-t9-bKl"/>
+                            <constraint firstItem="0p4-hr-bj9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-20" id="210-NW-DA4"/>
+                            <constraint firstItem="0p4-hr-bj9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Dqd-fj-y5y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0p4-hr-bj9" secondAttribute="trailing" constant="16" id="N0e-57-Ih2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AQV-iy-3gF" appends="YES" id="zta-dw-tWV"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="exchangeButton" destination="wZ1-5x-6Fc" id="AcH-Pv-Utq"/>
+                        <outlet property="firstCurrencyTextField" destination="heu-aR-QDy" id="UJm-pD-rL5"/>
+                        <outlet property="secondCurrencyTextField" destination="evW-cI-xKk" id="HJo-IX-O9z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AQV-iy-3gF">
+                    <connections>
+                        <action selector="dismissKeyboard" destination="BYZ-38-t0r" id="VLa-gL-IBf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="139" y="92"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_exchange" width="25" height="25"/>
+    </resources>
 </document>
