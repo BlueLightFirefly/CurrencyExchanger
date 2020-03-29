@@ -16,7 +16,7 @@ class CurrencyCell: UITableViewCell {
         didSet {
             if let value = currency {
                 currencyTitle.text = value.currencyName
-                currencySymbol.text = value.currencySymbol
+                currencySymbol.text = value.currencySymbol ?? value.id
             }
         }
     }

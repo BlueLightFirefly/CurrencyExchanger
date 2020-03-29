@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxCocoa
 
 class CurrencyListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var loadingView: UIView!
     private let viewModel: CurrencyListViewModel = CurrencyListViewModel()
     private var networkManager = NetworkManager()
     private var disposeBag = DisposeBag()
+    
     class func fromStoryboard() -> CurrencyListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "CurrencyListViewController") as! CurrencyListViewController
@@ -23,32 +26,31 @@ class CurrencyListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkManager.requestAllCurrencies()
-            .subscribe(onNext: { curencies in
-                print(curencies.count)
-            }, onError: { e in
-                print(e)
-            }).disposed(by: disposeBag)
+        tableView.isHidden = true
+        viewModel.loadCurrencies()
+        setupSubscriptions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    private func setupSubscriptions() {
+        viewModel
+            .resultsObservervable
+            .bind(to: tableView.rx.items(cellIdentifier: "CurrencyCell")) { (index, currency: Currency, cell) in
+                if let currencyCell = cell as? CurrencyCell {
+                    currencyCell.currency = currency
+                }
+        }
+        .disposed(by: disposeBag)
+        viewModel.resultsObservervable
+            .subscribe(onNext: { [weak self] currencies in
+                if (currencies.count > 0) {
+                    self?.tableView.isHidden = false
+                }
+            })
+        .disposed(by: disposeBag)
+    }
 }
 
-extension CurrencyListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(in: section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath)
-        if let currencyCell = cell as? CurrencyCell {
-            currencyCell.currency = viewModel.currency(for: indexPath)
-        }
-        return cell
-    }
-    
-    
-}

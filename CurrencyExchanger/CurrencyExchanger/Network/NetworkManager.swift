@@ -17,7 +17,6 @@ class NetworkManager {
             if let strongSelf = self {
             let requestURL = URL(string:"https://free.currconv.com/api/v7/currencies?apiKey=do-not-use-this-key")!
             RxAlamofire.requestData(.get, requestURL)
-                .debug()
                 .subscribe(onNext: { responce, data in
                     do {
                         let currencies = try JSONDecoder().decode(Currencies.self, from: data)
