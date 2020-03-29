@@ -8,10 +8,10 @@
 
 import Foundation
 class CurrencyListViewModel {
-    private var currensies: [Currency] = [Currency(name: "Russian Ruble", symbol:"RUB"),
-                                          Currency(name: "Albanian Lek", symbol:"ALL"),
-                                          Currency(name: "East Caribbean Dollar", symbol:"XCD"),
-                                          Currency(name: "Euro", symbol:"EUR"),]
+    private var currensies: [Currency] = [Currency(id:"", currencyName: "Russian Ruble", currencySymbol:"RUB"),
+                                          Currency(id:"",currencyName: "Albanian Lek", currencySymbol:"ALL"),
+                                          Currency(id:"",currencyName: "East Caribbean Dollar", currencySymbol:"XCD"),
+                                          Currency(id:"",currencyName: "Euro", currencySymbol:"EUR"),]
     func numberOfSections() -> Int {
         return 1
     }
