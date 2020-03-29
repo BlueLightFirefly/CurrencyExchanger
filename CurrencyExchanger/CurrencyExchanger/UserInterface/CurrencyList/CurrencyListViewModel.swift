@@ -35,6 +35,8 @@ class CurrencyListViewModel {
         }
     }
     
+    var currencyObserver: BehaviorSubject<Currency?>?
+    
     func loadCurrencies() {
         networkManager.requestAllCurrencies()
             .subscribe(onNext: { [weak self] currenciesArray in
@@ -45,6 +47,10 @@ class CurrencyListViewModel {
                 }, onError: { [weak self] e in
                     self?.results.onError(e)
             }).disposed(by: disposeBag)
+    }
+    
+    func selected(currency: Currency) {
+        currencyObserver?.onNext(currency)
     }
     
 }

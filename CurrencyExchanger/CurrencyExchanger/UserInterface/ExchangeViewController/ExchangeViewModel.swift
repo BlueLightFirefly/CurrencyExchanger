@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import RxSwift
 
 class ExchangeViewModel {
+    private var firstCurrencyValue: Currency?
+    private var secondCurrencyValue: Currency?
+    
+    let firstCurrency = BehaviorSubject<Currency?>(value: nil)
+    let secondCurrency = BehaviorSubject<Currency?>(value: nil)
+    
     
 }

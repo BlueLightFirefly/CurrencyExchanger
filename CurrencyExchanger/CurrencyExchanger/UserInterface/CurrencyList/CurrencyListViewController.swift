@@ -17,7 +17,7 @@ class CurrencyListViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var noResultsLabel: UILabel!
     
-    private let viewModel: CurrencyListViewModel = CurrencyListViewModel()
+    let viewModel: CurrencyListViewModel = CurrencyListViewModel()
     private var networkManager = NetworkManager()
     private var disposeBag = DisposeBag()
     
@@ -59,6 +59,11 @@ class CurrencyListViewController: UIViewController {
                     self?.noResultsLabel.text = NSLocalizedString("No data loaded", comment: "Empty list message in currencies list")
             })
             .disposed(by: disposeBag)
+        tableView.rx.modelSelected(Currency.self)
+            .subscribe(onNext:{ [weak self] currency in
+                self?.viewModel.selected(currency: currency)
+                self?.navigationController?.popViewController(animated: true)
+            }).disposed(by: disposeBag)
     }
     
     private func setupSearchBar() {

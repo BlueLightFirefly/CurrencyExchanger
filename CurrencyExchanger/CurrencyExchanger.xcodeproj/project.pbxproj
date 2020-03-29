@@ -161,10 +161,10 @@
 		D6D6A8CF242F0ADB00DF4B4D /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				D6D6A8D1242F0AFD00DF4B4D /* ExchangeViewController */,
 				D6ABE66A242F47FD00FF6920 /* CurrencyList */,
 				E01A3167242CFF4700EFEA64 /* LaunchScreen.storyboard */,
 				E01A3162242CFF4200EFEA64 /* Main.storyboard */,
-				D6D6A8D1242F0AFD00DF4B4D /* ExchangeViewController */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
