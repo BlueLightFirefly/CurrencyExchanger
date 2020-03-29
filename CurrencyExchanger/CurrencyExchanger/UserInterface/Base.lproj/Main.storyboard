@@ -124,11 +124,20 @@
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Xw7-oR-hQB">
                                         <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rln-YW-lfS">
+                                        <rect key="frame" x="16" y="358.5" width="382" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="rln-YW-lfS" firstAttribute="leading" secondItem="eWx-ZT-Qi4" secondAttribute="leading" constant="16" id="82f-zI-Yfr"/>
                                     <constraint firstItem="Xw7-oR-hQB" firstAttribute="centerY" secondItem="eWx-ZT-Qi4" secondAttribute="centerY" id="Jef-ke-gzz"/>
                                     <constraint firstItem="Xw7-oR-hQB" firstAttribute="centerX" secondItem="eWx-ZT-Qi4" secondAttribute="centerX" id="hqu-7o-174"/>
+                                    <constraint firstItem="Xw7-oR-hQB" firstAttribute="top" secondItem="rln-YW-lfS" secondAttribute="bottom" constant="32" id="wpY-OI-E0O"/>
+                                    <constraint firstAttribute="trailing" secondItem="rln-YW-lfS" secondAttribute="trailing" constant="16" id="yib-Te-gxu"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nHs-at-4aO">
@@ -190,7 +199,9 @@
                         <viewLayoutGuide key="safeArea" id="syV-0r-m4D"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Xw7-oR-hQB" id="htV-pW-1tn"/>
                         <outlet property="loadingView" destination="eWx-ZT-Qi4" id="Ayg-U4-Uhr"/>
+                        <outlet property="noResultsLabel" destination="rln-YW-lfS" id="MCa-Lv-PRq"/>
                         <outlet property="tableView" destination="nHs-at-4aO" id="VA4-lC-Rz0"/>
                     </connections>
                 </viewController>

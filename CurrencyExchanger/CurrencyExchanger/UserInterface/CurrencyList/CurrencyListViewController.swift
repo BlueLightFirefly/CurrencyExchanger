@@ -14,6 +14,9 @@ import RxCocoa
 class CurrencyListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var loadingView: UIView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var noResultsLabel: UILabel!
+    
     private let viewModel: CurrencyListViewModel = CurrencyListViewModel()
     private var networkManager = NetworkManager()
     private var disposeBag = DisposeBag()
@@ -44,13 +47,16 @@ class CurrencyListViewController: UIViewController {
                 }
         }
         .disposed(by: disposeBag)
-        viewModel.resultsObservervable
+        viewModel.resultsThrowableObservervable
             .subscribe(onNext: { [weak self] currencies in
                 if (currencies.count > 0) {
                     self?.tableView.isHidden = false
                 }
+                }, onError: { [weak self]e in
+                    self?.activityIndicator.stopAnimating()
+                    self?.noResultsLabel.text = NSLocalizedString("No data loaded", comment: "Empty list message in currencies list")
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 
