@@ -29,6 +29,7 @@ class CurrencyListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchBar()
         tableView.isHidden = true
         viewModel.loadCurrencies()
         setupSubscriptions()
@@ -38,6 +39,7 @@ class CurrencyListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    
     private func setupSubscriptions() {
         viewModel
             .resultsObservervable
@@ -57,6 +59,24 @@ class CurrencyListViewController: UIViewController {
                     self?.noResultsLabel.text = NSLocalizedString("No data loaded", comment: "Empty list message in currencies list")
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.dimsBackgroundDuringPresentation = false
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+        } else {
+            self.tableView.tableHeaderView = searchController.searchBar
+        }
+        searchController.searchBar.rx.text.orEmpty
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.viewModel.filter = value
+            }).disposed(by: disposeBag)
     }
 }
 

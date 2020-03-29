@@ -22,6 +22,18 @@ class CurrencyListViewModel {
     var allCurrencies = [Currency]()
     private let networkManager =  NetworkManager()
     private var disposeBag = DisposeBag()
+    var filter: String = "" {
+        didSet {
+            if (filter.isEmpty) {
+                results.onNext(allCurrencies)
+            } else {
+                let filteredResults = allCurrencies.filter({ $0.currencyName.contains(filter) ||
+                    $0.id.contains(filter) ||
+                    ($0.currencySymbol?.contains(filter)) ?? false })
+                results.onNext(filteredResults)
+            }
+        }
+    }
     
     func loadCurrencies() {
         networkManager.requestAllCurrencies()
