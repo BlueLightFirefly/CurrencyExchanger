@@ -8,7 +8,7 @@
 
 import XCTest
 
-class CurrenceParseTests: XCTestCase {
+class CurrencyParseTests: XCTestCase {
     var fullCurrencyJSON: [String : Any] = ["currencyName" : "Albanian Lek",
                                             "currencySymbol": "Lek",
                                             "id": "ALL"

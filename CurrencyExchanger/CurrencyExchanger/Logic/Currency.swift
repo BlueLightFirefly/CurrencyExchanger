@@ -14,13 +14,15 @@ struct Currency: Decodable {
 }
 
 struct Currencies : Decodable {
-    var results : [[String : Currency]]
+    var results : [String : Currency]
     
     var asArray : [Currency] {
         get {
-            return results.compactMap { value in
-                return value.first?.value
+            var array = [Currency]()
+            results.forEach { elem in
+                array.append(elem.value)
             }
+            return array
         }
     }
 }
