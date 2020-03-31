@@ -25,3 +25,15 @@ struct Currencies : Decodable {
         }
     }
 }
+
+struct ConvertationValue: Decodable {
+    var rate_for_amount: String
+}
+
+struct ConvertationResult: Decodable {
+    var rates: [String: ConvertationValue]
+    var value: ConvertationValue {
+        return rates.first!.value
+    }
+}
+

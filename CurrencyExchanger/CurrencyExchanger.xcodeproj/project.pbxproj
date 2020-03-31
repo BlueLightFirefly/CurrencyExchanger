@@ -27,6 +27,7 @@
 		E01A3169242CFF4700EFEA64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E01A3167242CFF4700EFEA64 /* LaunchScreen.storyboard */; };
 		E01A3174242CFF4700EFEA64 /* CurrencyExchangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A3173242CFF4700EFEA64 /* CurrencyExchangerTests.swift */; };
 		E01A317F242CFF4700EFEA64 /* CurrencyExchangerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A317E242CFF4700EFEA64 /* CurrencyExchangerUITests.swift */; };
+		E0BEF9392433832A003D2305 /* ConvertationParsinfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BEF9382433832A003D2305 /* ConvertationParsinfTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		E01A317A242CFF4700EFEA64 /* CurrencyExchangerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyExchangerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01A317E242CFF4700EFEA64 /* CurrencyExchangerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerUITests.swift; sourceTree = "<group>"; };
 		E01A3180242CFF4700EFEA64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0BEF9382433832A003D2305 /* ConvertationParsinfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertationParsinfTests.swift; sourceTree = "<group>"; };
 		E45445C1CE375EADB54B3122 /* Pods-CurrencyExchanger-CurrencyExchangerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyExchanger-CurrencyExchangerUITests.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyExchanger-CurrencyExchangerUITests/Pods-CurrencyExchanger-CurrencyExchangerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA679AACAAD0C01CB0996CD5 /* Pods_CurrencyExchanger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyExchanger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7E2A180072C405C48C58449 /* Pods-CurrencyExchanger-CurrencyExchangerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyExchanger-CurrencyExchangerUITests.release.xcconfig"; path = "Target Support Files/Pods-CurrencyExchanger-CurrencyExchangerUITests/Pods-CurrencyExchanger-CurrencyExchangerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				E01A3173242CFF4700EFEA64 /* CurrencyExchangerTests.swift */,
 				E01A3175242CFF4700EFEA64 /* Info.plist */,
 				D6817F29243049C500C4046F /* CurrencyParseTests.swift */,
+				E0BEF9382433832A003D2305 /* ConvertationParsinfTests.swift */,
 			);
 			path = CurrencyExchangerTests;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				D6817F2B24304AE300C4046F /* Currency.swift in Sources */,
 				D6817F2A243049C500C4046F /* CurrencyParseTests.swift in Sources */,
 				E01A3174242CFF4700EFEA64 /* CurrencyExchangerTests.swift in Sources */,
+				E0BEF9392433832A003D2305 /* ConvertationParsinfTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
