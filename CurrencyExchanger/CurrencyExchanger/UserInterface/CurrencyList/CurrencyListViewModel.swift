@@ -28,8 +28,7 @@ class CurrencyListViewModel {
                 results.onNext(allCurrencies)
             } else {
                 let filteredResults = allCurrencies.filter({ $0.currencyName.contains(filter) ||
-                    $0.id.contains(filter) ||
-                    ($0.currencySymbol?.contains(filter)) ?? false })
+                    $0.currencySymbol.contains(filter) })
                 results.onNext(filteredResults)
             }
         }

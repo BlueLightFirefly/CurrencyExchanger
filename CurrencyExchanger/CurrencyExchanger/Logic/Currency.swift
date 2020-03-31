@@ -8,19 +8,18 @@
 
 import Foundation
 struct Currency: Decodable {
-    var id: String
     var currencyName: String
-    var currencySymbol: String?
+    var currencySymbol: String
 }
 
 struct Currencies : Decodable {
-    var results : [String : Currency]
-    
+    var currencies : [String : String]
     var asArray : [Currency] {
         get {
             var array = [Currency]()
-            results.forEach { elem in
-                array.append(elem.value)
+            currencies.forEach { elem in
+                let currency = Currency(currencyName: elem.value, currencySymbol: elem.key)
+                array.append(currency)
             }
             return array
         }

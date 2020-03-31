@@ -17,7 +17,7 @@ class CurrencyView: UIView {
         didSet {
             currencyObservable?.observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] currency in
-                    self?.currencyLabel.text = currency?.currencySymbol ?? currency?.id ?? ""
+                    self?.currencyLabel.text = currency?.currencySymbol ?? ""
                 })
                 .disposed(by: disposableBag)
         }
@@ -30,7 +30,6 @@ class CurrencyView: UIView {
     }
     
     @IBAction func currencyButtonTapped() {
-        print("Tapped")
         currencyChangeTapBlock?()
     }
 }
