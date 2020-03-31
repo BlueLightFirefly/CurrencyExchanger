@@ -56,19 +56,24 @@ class ExchangeViewModel {
         
     }
     
-    func canSendRequest() -> ValidationResult {
+    func canSendRequest(isFirstValue: Bool?) -> ValidationResult {
         if firstCurrencyValue == nil {
             return .firstCurrencyEmpty
         }
         if secondCurrencyValue == nil {
             return .secondCurrencyEmpty
         }
-        if (try? firstFieldAmount.value().isEmpty) ?? true {
+        if let isFirstValue = isFirstValue {
+            if (try? firstFieldAmount.value().isEmpty) ?? true && isFirstValue{
+                return .firstFieldEmpty
+            }
+            if (try? secondFieldAmount.value().isEmpty) ?? true && !isFirstValue {
+                return .secondFieldEmpty
+            }
+        } else {
             return .firstFieldEmpty
         }
-        if (try? secondFieldAmount.value().isEmpty) ?? true {
-            return .secondFieldEmpty
-        }
+        
         return .allValid
     }
     

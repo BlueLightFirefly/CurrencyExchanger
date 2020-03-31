@@ -75,7 +75,7 @@ class ExchangeViewController: UIViewController {
     
     @IBAction func exchangeButtonTapped() {
         dismissKeyboard()
-        let result = viewModel.canSendRequest()
+        let result = viewModel.canSendRequest(isFirstValue: lastActiveTextField == nil ? nil : lastActiveTextField == firstCurrencyTextField)
         if result == .allValid {
             viewModel.exchange(isFirstValue: lastActiveTextField == firstCurrencyTextField)
                 .subscribe(onNext: { [weak self] value in
@@ -106,7 +106,7 @@ class ExchangeViewController: UIViewController {
         case .firstFieldEmpty:
             return NSLocalizedString("First text field value is empty. Please enter value", comment: "ExchangeViewController: First text field is empty")
         case .secondFieldEmpty:
-            return NSLocalizedString("First text field value is empty. Please enter value", comment: "ExchangeViewController: Second text field is empty")
+            return NSLocalizedString("Second text field value is empty. Please enter value", comment: "ExchangeViewController: Second text field is empty")
         case .allValid:
             return ""
         }
