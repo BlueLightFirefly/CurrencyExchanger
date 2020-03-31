@@ -83,14 +83,16 @@ class ExchangeViewModel {
         let amount = isFirstValue ? firstFieldAmountValue : secondFieldAmountValue
         return Observable<Bool>.create({ [weak self] observer in
             observer.onNext(true)
-            self?.networkManager.exchange(from: fromCurrency, to: toCurrency, amount: amount).subscribe(onNext:{value in
-                isFirstValue ? self?.secondFieldAmount.onNext(value.rate_for_amount) : self?.firstFieldAmount.onNext(value.rate_for_amount)
-                observer.onNext(false)
-                observer.onCompleted()
-            }, onError:{e in
-                observer.onError(e)
-            }
-            ).disposed(by: self!.disposeBag)
+            self?.networkManager.exchange(from: fromCurrency, to: toCurrency, amount: amount)
+                .subscribe(onNext:{ value in
+                    isFirstValue ? self?.secondFieldAmount.onNext(value.rate_for_amount) : self?.firstFieldAmount.onNext(value.rate_for_amount)
+                    observer.onNext(false)
+                    observer.onCompleted()
+                }, onError:{e in
+                    observer.onError(e)
+                }
+            )
+                .disposed(by: self!.disposeBag)
             return Disposables.create()
         })
     }

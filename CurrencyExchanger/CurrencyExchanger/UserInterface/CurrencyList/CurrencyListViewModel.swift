@@ -11,7 +11,9 @@ import RxSwift
 class CurrencyListViewModel {
     
     var resultsObservervable: Observable<[Currency]> {
-        return results.asObservable().catchErrorJustReturn([]).observeOn(MainScheduler.instance)
+        return results.asObservable()
+            .catchErrorJustReturn([])
+            .observeOn(MainScheduler.instance)
     }
     
     var resultsThrowableObservervable: Observable<[Currency]> {
@@ -45,7 +47,8 @@ class CurrencyListViewModel {
                     .onNext(sortedCurrencies)
                 }, onError: { [weak self] e in
                     self?.results.onError(e)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     func selected(currency: Currency) {

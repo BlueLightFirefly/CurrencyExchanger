@@ -20,6 +20,7 @@ class CurrencyListViewController: UIViewController {
     let viewModel: CurrencyListViewModel = CurrencyListViewModel()
     private var networkManager = NetworkManager()
     private var disposeBag = DisposeBag()
+    private var searchController: UISearchController?
     
     class func fromStoryboard() -> CurrencyListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -61,9 +62,21 @@ class CurrencyListViewController: UIViewController {
             .disposed(by: disposeBag)
         tableView.rx.modelSelected(Currency.self)
             .subscribe(onNext:{ [weak self] currency in
-                self?.viewModel.selected(currency: currency)
-                self?.navigationController?.popViewController(animated: true)
-            }).disposed(by: disposeBag)
+                guard let strongSelf = self else { return }
+                strongSelf.viewModel.selected(currency: currency)
+                if strongSelf.searchController?.isActive ?? false {
+                    strongSelf.searchController?.isActive = false
+                    strongSelf.perform(#selector(strongSelf.dismissVC), with: self, afterDelay: TimeInterval(0.5))
+                } else {
+                    strongSelf.dismissVC()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
+    @objc func dismissVC() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setupSearchBar() {
@@ -81,7 +94,9 @@ class CurrencyListViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] value in
                 self?.viewModel.filter = value
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+        self.searchController = searchController
     }
 }
 
