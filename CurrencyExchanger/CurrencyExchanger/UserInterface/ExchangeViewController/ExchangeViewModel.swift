@@ -21,10 +21,16 @@ class ExchangeViewModel {
     private var firstCurrencyValue: Currency?
     private var secondCurrencyValue: Currency?
     
+    private var firstFieldAmountValue: String = ""
+    private var secondFieldAmountValue: String = ""
+    
     let firstCurrency = BehaviorSubject<Currency?>(value: nil)
     let secondCurrency = BehaviorSubject<Currency?>(value: nil)
-    let firstFieldValue = BehaviorSubject(value: "")
-    let secondFieldValue = BehaviorSubject(value: "")
+    let firstFieldAmount = BehaviorSubject(value: "")
+    let secondFieldAmount = BehaviorSubject(value: "")
+    
+    private let networkManager = NetworkManager()
+    
     private let disposeBag = DisposeBag()
     init() {
         firstCurrency
@@ -37,6 +43,17 @@ class ExchangeViewModel {
                 self?.secondCurrencyValue = currency
             })
             .disposed(by:disposeBag)
+        firstFieldAmount
+            .subscribe(onNext: { [weak self] value in
+                self?.firstFieldAmountValue = value
+            })
+            .disposed(by:disposeBag)
+        secondFieldAmount
+            .subscribe(onNext: { [weak self] value in
+                self?.secondFieldAmountValue = value
+            })
+            .disposed(by:disposeBag)
+        
     }
     
     func canSendRequest() -> ValidationResult {
@@ -46,13 +63,31 @@ class ExchangeViewModel {
         if secondCurrencyValue == nil {
             return .secondCurrencyEmpty
         }
-        if (try? firstFieldValue.value().isEmpty) ?? true {
+        if (try? firstFieldAmount.value().isEmpty) ?? true {
             return .firstFieldEmpty
         }
-        if (try? secondFieldValue.value().isEmpty) ?? true {
+        if (try? secondFieldAmount.value().isEmpty) ?? true {
             return .secondFieldEmpty
         }
         return .allValid
+    }
+    
+    func exchange(isFirstValue: Bool) -> Observable<Bool> {
+        let fromCurrency = isFirstValue ?  firstCurrencyValue! : secondCurrencyValue!
+        let toCurrency = isFirstValue ? secondCurrencyValue! : firstCurrencyValue!
+        let amount = isFirstValue ? firstFieldAmountValue : secondFieldAmountValue
+        return Observable<Bool>.create({ [weak self] observer in
+            observer.onNext(true)
+            self?.networkManager.exchange(from: fromCurrency, to: toCurrency, amount: amount).subscribe(onNext:{value in
+                isFirstValue ? self?.secondFieldAmount.onNext(value.rate_for_amount) : self?.firstFieldAmount.onNext(value.rate_for_amount)
+                observer.onNext(false)
+                observer.onCompleted()
+            }, onError:{e in
+                observer.onError(e)
+            }
+            ).disposed(by: self!.disposeBag)
+            return Disposables.create()
+        })
     }
     
     

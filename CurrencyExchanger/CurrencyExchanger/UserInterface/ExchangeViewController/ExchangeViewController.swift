@@ -11,11 +11,14 @@ import UIKit
 import RxSwift
 
 class ExchangeViewController: UIViewController {
-    @IBOutlet var exchangeButton: UIButton!
+    @IBOutlet var exchangeButton: LoadingButton!
     @IBOutlet var firstCurrencyTextField: UITextField!
     @IBOutlet var secondCurrencyTextField: UITextField!
     
     private let viewModel = ExchangeViewModel()
+    private let disposeBag = DisposeBag()
+    
+    private var lastActiveTextField: UITextField?
     
     //MARK: - life cycle
     
@@ -35,6 +38,12 @@ class ExchangeViewController: UIViewController {
         secondRightView.currencyObservable = viewModel.secondCurrency.asObservable()
         secondCurrencyTextField.rightViewMode = UITextField.ViewMode.always
         secondCurrencyTextField.rightView = secondRightView
+        
+        viewModel.firstFieldAmount.bind(to: firstCurrencyTextField.rx.text).disposed(by: self.disposeBag)
+        firstCurrencyTextField.rx.text.orEmpty.bind(to: viewModel.firstFieldAmount).disposed(by: self.disposeBag)
+        
+        viewModel.secondFieldAmount.bind(to: secondCurrencyTextField.rx.text).disposed(by: self.disposeBag)
+        secondCurrencyTextField.rx.text.orEmpty.bind(to: viewModel.secondFieldAmount).disposed(by: self.disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +54,10 @@ class ExchangeViewController: UIViewController {
     //todo: make channels with Rx
     //todo: refactor to use one callback and observer inside
     private func firstFieldCurrencyChange() {
-        print("first field tap")
         showCurrencySelector(observer: viewModel.firstCurrency)
     }
     
     private func secondFieldCurrencyChange() {
-        print("second field tap")
         showCurrencySelector(observer: viewModel.secondCurrency)
     }
     
@@ -67,12 +74,23 @@ class ExchangeViewController: UIViewController {
     }
     
     @IBAction func exchangeButtonTapped() {
+        dismissKeyboard()
         let result = viewModel.canSendRequest()
         if result == .allValid {
-            //todo: Send request
+            viewModel.exchange(isFirstValue: lastActiveTextField == firstCurrencyTextField)
+                .subscribe(onNext: { [weak self] value in
+                    self?.exchangeButton.isLoading = value
+                    }, onError: {[weak self] error in
+                        self?.show(errorMessage: error.localizedDescription, title: nil)
+                })
+                .disposed(by: self.disposeBag)
         } else {
             showValidationMessage(result)
         }
+    }
+    
+    @IBAction func textFieldBecomeActive(sender: UITextField) {
+        lastActiveTextField = sender
     }
     
     private func showValidationMessage(_ result: ValidationResult) {

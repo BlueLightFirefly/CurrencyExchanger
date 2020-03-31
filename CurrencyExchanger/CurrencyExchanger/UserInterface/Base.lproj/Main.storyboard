@@ -29,6 +29,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <action selector="textFieldBecomeActiveWithSender:" destination="BYZ-38-t0r" eventType="editingChanged" id="fgA-NM-mMV"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -49,6 +52,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <action selector="textFieldBecomeActiveWithSender:" destination="BYZ-38-t0r" eventType="editingChanged" id="TXg-aD-UC5"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -59,11 +65,11 @@
                                             <constraint firstItem="evW-cI-xKk" firstAttribute="leading" secondItem="rrn-Y4-wLc" secondAttribute="leading" id="wgn-hG-eNe"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZ1-5x-6Fc">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZ1-5x-6Fc" customClass="LoadingButton" customModule="CurrencyExchanger" customModuleProvider="target">
                                         <rect key="frame" x="124" y="128" width="134" height="45"/>
                                         <color key="backgroundColor" red="0.17333522032136858" green="0.52328373968298658" blue="0.04469695034762565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="10" maxX="10" maxY="10"/>
-                                        <inset key="imageEdgeInsets" minX="-17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-18" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Exchange" image="ic_exchange">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
