@@ -67,6 +67,9 @@
                                         <state key="normal" title="Exchange" image="ic_exchange">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="exchangeButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="fOS-RT-b2q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

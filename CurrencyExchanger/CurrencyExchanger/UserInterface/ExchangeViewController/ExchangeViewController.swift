@@ -17,6 +17,8 @@ class ExchangeViewController: UIViewController {
     
     private let viewModel = ExchangeViewModel()
     
+    //MARK: - life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,8 +60,44 @@ class ExchangeViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    //MARK: - actions
+    
     @IBAction func dismissKeyboard() {
         self.view.endEditing(true)
     }
     
+    @IBAction func exchangeButtonTapped() {
+        let result = viewModel.canSendRequest()
+        if result == .allValid {
+            //todo: Send request
+        } else {
+            showValidationMessage(result)
+        }
+    }
+    
+    private func showValidationMessage(_ result: ValidationResult) {
+        self.show(errorMessage: validationMessage(for: result), title: nil)
+    }
+    
+    private func validationMessage(for state: ValidationResult) -> String {
+        switch (state) {
+        case .firstCurrencyEmpty:
+            return NSLocalizedString("First currency value is empty. Please select any one", comment: "ExchangeViewController: First currency not selected error message")
+        case .secondCurrencyEmpty:
+            return NSLocalizedString("Second currency value is empty. Please select any one", comment: "ExchangeViewController: Second currency not selected error message")
+        case .firstFieldEmpty:
+            return NSLocalizedString("First text field value is empty. Please enter value", comment: "ExchangeViewController: First text field is empty")
+        case .secondFieldEmpty:
+            return NSLocalizedString("First text field value is empty. Please enter value", comment: "ExchangeViewController: Second text field is empty")
+        case .allValid:
+            return ""
+        }
+    }
+    
+    private func show(errorMessage message: String?, title: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok alert action"), style: .default, handler:nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
