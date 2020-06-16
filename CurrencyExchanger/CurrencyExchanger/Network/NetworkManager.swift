@@ -14,7 +14,7 @@ private let APIKey = "f96847c424msh3226f07e3f2ade4p1464a8jsn93f99a3b39e5"
 private let APIHost = "currency-converter5.p.rapidapi.com"
 
 class NetworkManager {
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     func requestAllCurrencies() -> Observable<[Currency]> {
         return Observable<[Currency]>.create { [weak self] observer in
             guard let strongSelf = self else { return Disposables.create() }

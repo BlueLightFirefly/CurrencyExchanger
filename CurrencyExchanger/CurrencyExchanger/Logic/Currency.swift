@@ -8,12 +8,12 @@
 
 import Foundation
 struct Currency: Decodable {
-    var currencyName: String
-    var currencySymbol: String
+    let currencyName: String
+    let currencySymbol: String
 }
 
 struct Currencies : Decodable {
-    var currencies : [String : String]
+    let currencies : [String : String]
     var asArray : [Currency] {
         get {
             var array = [Currency]()
@@ -27,11 +27,11 @@ struct Currencies : Decodable {
 }
 
 struct ConvertationValue: Decodable {
-    var rate_for_amount: String
+    let rate_for_amount: String
 }
 
 struct ConvertationResult: Decodable {
-    var rates: [String: ConvertationValue]
+    let rates: [String: ConvertationValue]
     var value: ConvertationValue {
         return rates.first!.value
     }

@@ -23,7 +23,7 @@ class CurrencyListViewModel {
     var results = BehaviorSubject(value: [Currency]())
     var allCurrencies = [Currency]()
     private let networkManager =  NetworkManager()
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     var filter: String = "" {
         didSet {
             if (filter.isEmpty) {

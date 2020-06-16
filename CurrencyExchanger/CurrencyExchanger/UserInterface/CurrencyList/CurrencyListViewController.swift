@@ -18,8 +18,8 @@ class CurrencyListViewController: UIViewController {
     @IBOutlet var noResultsLabel: UILabel!
     
     let viewModel: CurrencyListViewModel = CurrencyListViewModel()
-    private var networkManager = NetworkManager()
-    private var disposeBag = DisposeBag()
+    private let networkManager = NetworkManager()
+    private let disposeBag = DisposeBag()
     private var searchController: UISearchController?
     
     class func fromStoryboard() -> CurrencyListViewController {
