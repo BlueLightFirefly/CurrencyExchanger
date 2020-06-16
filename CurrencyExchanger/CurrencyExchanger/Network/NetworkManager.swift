@@ -36,8 +36,9 @@ class NetworkManager {
                     observer.onError(error)
                 })
                 .disposed(by: strongSelf.disposeBag)
+             return Disposables.create()
         }
-        return Disposables.create()
+       
     }
     
     func exchange(from: Currency, to: Currency, amount: String) -> Observable<ConvertationValue> {
