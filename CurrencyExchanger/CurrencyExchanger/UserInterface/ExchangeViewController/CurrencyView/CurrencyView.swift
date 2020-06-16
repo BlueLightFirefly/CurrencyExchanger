@@ -13,6 +13,7 @@ import RxSwift
 class CurrencyView: UIView {
     @IBOutlet var currencyLabel: UILabel!
     let disposableBag = DisposeBag()
+    private var valueObserver: BehaviorSubject<Currency?>?
     var currencyObservable: Observable<Currency?>? {
         didSet {
             currencyObservable?.observeOn(MainScheduler.instance)
@@ -22,14 +23,17 @@ class CurrencyView: UIView {
                 .disposed(by: disposableBag)
         }
     }
-    var currencyChangeTapBlock: (()-> ())?
-    class func instanceFromNib(tapBlock:(()-> ())? = nil) -> CurrencyView {
+    var currencyChangeTapBlock: ((BehaviorSubject<Currency?>)-> ())?
+    class func instanceFromNib(tapBlock:((BehaviorSubject<Currency?>)-> ())? = nil, observer: BehaviorSubject<Currency?>) -> CurrencyView {
         let view = UINib(nibName: "CurrencyView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! CurrencyView
         view.currencyChangeTapBlock = tapBlock
+        view.valueObserver = observer
         return view
     }
     
     @IBAction func currencyButtonTapped() {
-        currencyChangeTapBlock?()
+        if let valueObserver = valueObserver {
+        currencyChangeTapBlock?(valueObserver)
+        }
     }
 }

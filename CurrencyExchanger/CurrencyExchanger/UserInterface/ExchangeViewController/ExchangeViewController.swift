@@ -30,17 +30,25 @@ class ExchangeViewController: UIViewController {
     }
     
     private func setupTextFields() {
-        let firstRightView = CurrencyView.instanceFromNib(tapBlock: firstFieldCurrencyChange)
+        setupFirstTextView()
+        setupSecondTextView()
+    }
+    
+    private func setupFirstTextView() {
+        let firstRightView = CurrencyView.instanceFromNib(tapBlock: showCurrencySelector, observer: viewModel.firstCurrency)
         firstRightView.currencyObservable = viewModel.firstCurrency.asObservable()
         firstCurrencyTextField.rightViewMode = UITextField.ViewMode.always
         firstCurrencyTextField.rightView = firstRightView
-        let secondRightView = CurrencyView.instanceFromNib(tapBlock: secondFieldCurrencyChange)
-        secondRightView.currencyObservable = viewModel.secondCurrency.asObservable()
-        secondCurrencyTextField.rightViewMode = UITextField.ViewMode.always
-        secondCurrencyTextField.rightView = secondRightView
         
         viewModel.firstFieldAmount.bind(to: firstCurrencyTextField.rx.text).disposed(by: self.disposeBag)
         firstCurrencyTextField.rx.text.orEmpty.bind(to: viewModel.firstFieldAmount).disposed(by: self.disposeBag)
+    }
+    
+    private func setupSecondTextView() {
+        let secondRightView = CurrencyView.instanceFromNib(tapBlock: showCurrencySelector, observer: viewModel.secondCurrency)
+        secondRightView.currencyObservable = viewModel.secondCurrency.asObservable()
+        secondCurrencyTextField.rightViewMode = UITextField.ViewMode.always
+        secondCurrencyTextField.rightView = secondRightView
         
         viewModel.secondFieldAmount.bind(to: secondCurrencyTextField.rx.text).disposed(by: self.disposeBag)
         secondCurrencyTextField.rx.text.orEmpty.bind(to: viewModel.secondFieldAmount).disposed(by: self.disposeBag)
@@ -50,17 +58,7 @@ class ExchangeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
-    
-    //todo: make channels with Rx
-    //todo: refactor to use one callback and observer inside
-    private func firstFieldCurrencyChange() {
-        showCurrencySelector(observer: viewModel.firstCurrency)
-    }
-    
-    private func secondFieldCurrencyChange() {
-        showCurrencySelector(observer: viewModel.secondCurrency)
-    }
-    
+
     private func showCurrencySelector(observer: BehaviorSubject<Currency?>) {
         let vc = CurrencyListViewController.fromStoryboard()
         vc.viewModel.currencyObserver = observer
